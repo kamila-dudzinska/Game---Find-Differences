@@ -1,7 +1,9 @@
 # 🎮 Gra „Znajdź różnice”
 
+
 Projekt to prosta gra logiczna typu „znajdź różnice ”, w której gracz porównuje dwa niemal identyczne obrazy i wskazuje miejsca, w których obrazki różnią się od siebie.
 Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu pliku wykonywalnego .exe. Gra ma na celu rozwijanie spostrzegawczości💡
+
 
 
 ⚙️ 1. Jak uruchomić
@@ -11,6 +13,7 @@ Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu plik
 ** Uruchom plik find_differences.exe.
 
 ** Gra otworzy się w oknie — klikaj różnice na obrazach, aby zdobywać punkty.
+
 
 
 🔹 Wersja 2 — kod w Python (IDE)
@@ -35,21 +38,24 @@ Po znalezieniu wszystkich różnic przechodzisz do kolejnego poziomu.* (będzie 
 
 
 
+
 🧱 3. Struktura projektu
 📂 Game/
 │
-├── 📁 build/                # Pliki pomocnicze tworzone przy kompilacji do .exe
+├── build/                 # Pliki pomocnicze tworzone przy kompilacji do .exe
 │
-├── 📁 dist/                 # Folder z gotowym plikiem wykonywalnym gry (Tutaj plik .exe)
-│   ├── diff.exe
+├── dist/                  # Folder z gotowym plikiem wykonywalnym gry
+│   └── diff.exe           # Plik .exe gry
 │
-├── 📁 images/               # Obrazy używane w grze
+├── images/                # Obrazy używane w grze
 │
-├── 📄 dif_game_grid.py      # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
-├── 📄 diff.py               # Główny skrypt porównujący obrazy i obsługujący logikę gry
-├── 📄 diff.spec             # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
-├── 📄 games.py              # Plik uruchamiający grę i interfejs Tkinter
-├── 📄 tp_dclean.py          # Skrypt pomocnic
+├── dif_game_grid.py       # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
+├── diff.py                # Główny skrypt porównujący obrazy i obsługujący logikę gry
+├── diff.spec              # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
+├── games.py               # Plik uruchamiający grę i interfejs Tkinter
+└── tp_dclean.py           # Skrypt pomocniczy do czyszczenia i przygotowania danych
+
+
 
 
 🔍 4. Lessons learned
@@ -64,6 +70,7 @@ Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 * Debugowanie i eksport do .exe — po kilku próbach z pyinstaller udało się poprawnie zapisać grę jako plik wykonywalny, rozwiązując błędy z zasobami i ścieżkami.
 
 
+
 🧩 5. Dalszy rozwój
 W wolnym czasie planuję:
 
@@ -76,11 +83,13 @@ Rozszerzyć projekt o tryb multiplayer lub czasowe wyzwania.
 Ulepszyć interfejs — np. animacje przy znalezieniu różnicy 🎉.
 
 
+
 Code snippet: 
 
 Code snippet: 
 
 <hr style="border:3px solid #AEC6CF;">
+
 
 ### Contact:
 [![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
