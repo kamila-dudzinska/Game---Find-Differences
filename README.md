@@ -45,26 +45,22 @@ Game/
 
 │
 
-├── build/                 # Pliki pomocnicze tworzone przy kompilacji do .exe
+── build/                 # Pliki pomocnicze tworzone przy kompilacji do .exe
 
 │
-├── dist/                  # Folder z gotowym plikiem wykonywalnym gry
+── dist/                  # Folder z gotowym plikiem wykonywalnym gry (.exe)
 
 │   └── diff.exe           # Plik .exe gry
 
 │
-├── images/                # Obrazy używane w grze
+── images/                # Obrazy używane w grze
 
 │
-├── dif_game_grid.py       # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
+── dif_game_grid.py       # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
 
-├── diff.py                # Główny skrypt porównujący obrazy i obsługujący logikę gry
+── diff.py                # Główny skrypt porównujący obrazy i obsługujący logikę gry
 
-├── diff.spec              # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
-
-├── games.py               # Plik uruchamiający grę i interfejs Tkinter
-
-└── tp_dclean.py           # Skrypt pomocnic
+── diff.spec              # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
 
 
 
