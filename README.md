@@ -39,12 +39,17 @@ Po znalezieniu wszystkich różnic przechodzisz do kolejnego poziomu.* (będzie 
 📂 Game/
 │
 ├── 📁 build/                # Pliki pomocnicze tworzone przy kompilacji do .exe
+│
 ├── 📁 dist/                 # Folder z gotowym plikiem wykonywalnym gry (Tutaj plik .exe)
-    ├──diff.exe
+│   ├── diff.exe
+│
 ├── 📁 images/               # Obrazy używane w grze
+│
 ├── 📄 dif_game_grid.py      # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
 ├── 📄 diff.py               # Główny skrypt porównujący obrazy i obsługujący logikę gry
 ├── 📄 diff.spec             # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
+├── 📄 games.py              # Plik uruchamiający grę i interfejs Tkinter
+├── 📄 tp_dclean.py          # Skrypt pomocnic
 
 
 🔍 4. Lessons learned
