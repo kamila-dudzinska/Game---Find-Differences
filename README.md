@@ -43,7 +43,9 @@ Po znalezieniu wszystkich różnic przechodzisz do kolejnego poziomu.* (będzie 
 
 Game/
 │
+
 ├── build/               # Pliki pomocnicze tworzone przy kompilacji do .exe
+
 │
 ├── dist/                # Folder z gotowym plikiem wykonywalnym gry (.exe)
 │   └── diff.exe         # Plik .exe gry
