@@ -52,11 +52,17 @@ Game/
 ├── dist/                # Folder z gotowym plikiem wykonywalnym gry (.exe)
 
 │   └── diff.exe         # Plik .exe gry
+
 │
+
 ├── images/              # Obrazy używane w grze
+
 │
+
 ├── dif_game_grid.py     # Skrypt z siatką (gridem) do kalibracji współrzędnych różnic
+
 ├── diff.py              # Główny skrypt porównujący obrazy i obsługujący logikę gry
+
 └── diff.spec            # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
 
 
