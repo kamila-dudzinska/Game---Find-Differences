@@ -7,12 +7,14 @@ Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu plik
 
 
 ⚙️ 1. Jak uruchomić
+
 🔹 Wersja 1 — plik .exe
  ** Pobierz folder projektu.
 
 ** Uruchom plik find_differences.exe.
 
 ** Gra otworzy się w oknie — klikaj różnice na obrazach, aby zdobywać punkty.
+
 
 
 
@@ -64,6 +66,8 @@ Game/
 ├── diff.py              # Główny skrypt porównujący obrazy i obsługujący logikę gry
 
 └── diff.spec            # Specyfikacja dla PyInstaller (tworzenie pliku .exe)
+
+
 
 
 
