@@ -5,6 +5,11 @@ Projekt to prosta gra logiczna typu „znajdź różnice ”, w której gracz po
 Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu pliku wykonywalnego .exe. Gra ma na celu rozwijanie spostrzegawczości💡
 
 
+Technologie: Python, 
+
+
+Modules: os, sys, threading, tkinter, pygame
+
 
 ⚙️ 1. Jak uruchomić
 
@@ -70,8 +75,6 @@ Game/
 
 
 
-
-
 🔍 4. Lessons learned
 Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 
@@ -95,6 +98,22 @@ Wprowadzić system punktacji i ranking graczy.
 Rozszerzyć projekt o tryb multiplayer lub czasowe wyzwania.
 
 Ulepszyć interfejs — np. animacje przy znalezieniu różnicy 🎉.
+
+
+6. 💡 Co pokazuje ten projekt
+Ten projekt jest świetnym przykładem połączenia:
+
+* Tkinter – do zarządzania oknami aplikacji
+
+* Pygame Zero – do renderowania i interakcji
+
+* Przetwarzania obrazów – do zaznaczania różnic
+
+* Debugowania geometrii GUI
+
+* Pakowania aplikacji Python do pliku .exe
+
+* Tworzenia narzędzi pomocniczych (np. siatki nakładanej na obraz) wspierających proces tworzenia
 
 
 
