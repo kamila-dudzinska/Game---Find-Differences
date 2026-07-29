@@ -8,7 +8,7 @@ Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu plik
 Technologie: Python, 
 
 
-Modules: os, sys, threading, tkinter, pygame
+Modules: os, sys, threading, tkinter, pygame, pillow
 
 
 ⚙️ 1. Jak uruchomić
