@@ -11,6 +11,8 @@ Technologie: Python,
 Modules: os, sys, threading, tkinter, pygame, pillow
 
 
+
+
 ⚙️ 1. Jak uruchomić
 
 🔹 Wersja 1 — plik .exe
@@ -19,6 +21,8 @@ Modules: os, sys, threading, tkinter, pygame, pillow
 ** Uruchom plik find_differences.exe.
 
 ** Gra otworzy się w oknie — klikaj różnice na obrazach, aby zdobywać punkty.
+
+
 
 
 
@@ -36,12 +40,16 @@ python main.py
 Gra wystartuje w oknie Tkinter.
 
 
+
+
 🕹️ 2. Zasady gry
 Porównaj dwa obrazy obok siebie.
 
 Kliknij miejsca, w których zauważysz różnice.
 
 Po znalezieniu wszystkich różnic przechodzisz do kolejnego poziomu.* (będzie w wersji rozszwerzonej)
+
+
 
 
 
@@ -75,6 +83,8 @@ Game/
 
 
 
+
+
 🔍 4. Lessons learned
 Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 
@@ -85,6 +95,8 @@ Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 * Threading — wykorzystałam wątek do mierzenia czasu gry i zapisu wyników bez blokowania interfejsu.
 
 * Debugowanie i eksport do .exe — po kilku próbach z pyinstaller udało się poprawnie zapisać grę jako plik wykonywalny, rozwiązując błędy z zasobami i ścieżkami.
+
+
 
 
 
@@ -117,11 +129,15 @@ Ten projekt jest świetnym przykładem połączenia:
 
 
 
+
+
 Code snippet: 
 
 Code snippet: 
 
 <hr style="border:3px solid #AEC6CF;">
+
+
 
 
 ### Contact:
