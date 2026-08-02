@@ -132,8 +132,11 @@ Ten projekt jest świetnym przykładem połączenia:
 
 
 Code snippet: 
+![code1](images/code1.png)
+
 
 Code snippet: 
+![code2](images/code2.png)
 
 <hr style="border:3px solid #AEC6CF;">
 
