@@ -1,7 +1,15 @@
+# Force GitHub Linguist to recognize Python as main language
 *.py linguist-language=Python
 *.spec linguist-language=Python
 *.toc linguist-language=Python
 *.html linguist-language=Python
+*.txt linguist-language=Python
 
+# Ignore build and dist folders from language statistics
 /build/ linguist-vendored
 /dist/ linguist-vendored
+
+# Ignore compiled and temporary files
+*.pyc linguist-vendored
+*.pyo linguist-vendored
+/__pycache__/ linguist-vendored
