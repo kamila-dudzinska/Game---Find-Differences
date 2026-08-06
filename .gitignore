@@ -214,5 +214,12 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+/build/
+*.spec
+*.pyc
+*.pyo
+__pycache__/
+
+
 # Streamlit
 .streamlit/secrets.toml
