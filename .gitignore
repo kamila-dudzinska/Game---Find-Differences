@@ -215,10 +215,12 @@ marimo/_lsp/
 __marimo__/
 
 /build/
-*.spec
+/dist/
+/__pycache__/
+/*.spec
 *.pyc
 *.pyo
-__pycache__/
+*.log
 
 
 # Streamlit
