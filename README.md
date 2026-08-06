@@ -13,7 +13,7 @@ Modules: os, sys, threading, tkinter, pygame, pillow
 
 
 
-⚙️ 1. Jak uruchomić
+⚙️ 1. Jak uruchomić?
 
 🔹 Wersja 1 — plik .exe
  ** Pobierz folder projektu.
