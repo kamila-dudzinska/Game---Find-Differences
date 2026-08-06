@@ -1,1 +1,7 @@
 *.py linguist-language=Python
+*.spec linguist-language=Python
+*.toc linguist-language=Python
+*.html linguist-language=Python
+
+/build/ linguist-vendored
+/dist/ linguist-vendored
