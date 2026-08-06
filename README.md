@@ -10,7 +10,8 @@ Technologie: Python
 
 Modules: os, sys, threading, tkinter, pygame, pillow
 
-## 🎮 Gameplay 
+
+## 🎮 Podgląd gry
 
 <p align="center">
   <img src="images/compressed_gif_game_.gif" width="600">
