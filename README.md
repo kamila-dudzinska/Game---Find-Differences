@@ -150,7 +150,6 @@ Code snippet:
 
 <br></br>
 
-# Linguist refresh
 
 
 
