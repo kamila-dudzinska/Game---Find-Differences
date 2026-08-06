@@ -5,7 +5,7 @@ Projekt to prosta gra logiczna typu „znajdź różnice ”, w której gracz po
 Powstała jako ćwiczenie w nauce Python, Tkinter, threading oraz tworzeniu pliku wykonywalnego .exe. Gra ma na celu rozwijanie spostrzegawczości💡
 
 
-Technologie: Python, 
+Technologie: Python
 
 
 Modules: os, sys, threading, tkinter, pygame, pillow
