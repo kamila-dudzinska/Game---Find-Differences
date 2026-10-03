@@ -90,7 +90,7 @@ Game/
 
 
 
-🔍 4. Lessons learned
+🔍 4.A Lessons learned
 Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 
 * Dodanie skryptu z gridem — stworzyłam siatkę współrzędnych, która pomogła mi precyzyjnie określić parametry różnic na obrazach. Dzięki temu kliknięcia gracza są dokładnie weryfikowane.
@@ -102,6 +102,14 @@ Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 * Debugowanie i eksport do .exe — po kilku próbach z pyinstaller udało się poprawnie zapisać grę jako plik wykonywalny, rozwiązując błędy z zasobami i ścieżkami.
 
 
+🧩4.B Lessons improved:
+Podczas pracy nad projektem skupiłam się na poprawie funkcjonalności i działania gry:
+
+* Poprawiona struktura pętli: rysowanie ekranu i obsługa kolejki restart / exit działają w każdej klatce. a lista znalezionych różnic jest tworzona dynamicznie ([False] * len(DIFFERENCES)), więc łatwo dodać kolejne różnice lub poziomy :)
+
+* Pętla gry w osobnej funkcji run_game(): main() najpierw pokazuje okno intro, a potem uruchamia grę. Wcześniej pętla odpalała się przy imporcie modułu.
+
+* poprawa skryptu siatki i dodanie nowej warstwy overlay
 
 
 
