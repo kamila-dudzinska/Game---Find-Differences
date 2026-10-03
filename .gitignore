@@ -225,3 +225,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# 1. Blokujemy absolutnie wszystko w tym folderze, żeby ukryć te kilkadziesiąt brudnopisów
+*
+
+# 2. Wyjątki (exceptions) - te pliki MAJĄ być widziane i aktualizowane na GitHubie:
+!README.md
+!requirements.txt
+!images/
+!nazwa_pliku_dg1.py
+!nazwa_pliku_dg2.py
+
+# 3. Dodatkowa blokada na foldery z PyInstallera (żeby nie pchały się na serwer)
+venv/
+build/
+dist/
+*.spec
+.spyderproject/
