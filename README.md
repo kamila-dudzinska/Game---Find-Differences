@@ -8,7 +8,12 @@ Language: Python
 
 Modules: os, sys, threading, tkinter, pygame, pillow
 
+
 ## 🎮 Game Preview
+
+<p align="center">
+  <img src="images/compressed_gif_game_.gif" width="600">
+</p>
 
 
 ⚙️ 1. How to Run?
