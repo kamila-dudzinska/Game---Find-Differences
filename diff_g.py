@@ -26,9 +26,9 @@ import pygame
 from pygame import Rect
 
 # background:
-katalog = os.path.dirname(os.path.abspath(__file__))
+katalog = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
 #the path to file was hidden due to safety reasons. 
-obrazek_path = os.path.join(r'\images', 'dif.png')
+obrazek_path = os.path.join(katalog, 'images', 'dif.png')
 background = pygame.image.load(obrazek_path)
 
 # size
