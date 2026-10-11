@@ -1,3 +1,125 @@
+# 🎮 "Find the Differences" Game
+
+This project is a simple Find the Differences puzzle game in which the player compares two nearly identical images and clicks on the areas where they differ. It was created as a learning exercise to practice Python, Tkinter, threading, and creating executable (.exe) files. The game is designed to improve observation and attention to detail. 💡
+
+Technologies
+
+Language: Python
+
+Modules: os, sys, threading, tkinter, pygame, pillow
+
+## 🎮 Game Preview
+
+
+⚙️ 1. How to Run?
+
+🔹 Option 1 — Executable (.exe) File
+Download the project folder.
+Run find_differences.exe.
+The game will open in a window. Click the differences in the images to score points.
+
+
+🔹 Option 2 — Python Source Code (IDE)
+Open the project in your preferred IDE (e.g. VS Code, PyCharm).
+Make sure you have Python ≥ 3.10 installed, along with the required libraries.
+Run:
+Shell
+python main.py
+
+The game will launch in a Tkinter window.
+
+
+🕹️ 2. Game Rules
+Compare the two images displayed side by side.
+Click on the locations where you spot differences.
+After finding all differences, you advance to the next level. (planned for an extended version)
+
+
+🧱 3. Project Structure
+Plain Text
+Game/
+│
+├── build/ # Temporary files created during .exe compilation
+│
+├── dist/ # Folder containing the executable game file
+│ └── diff.exe # Game executable
+│
+├── images/ # Images used in the game
+│
+├── dif_game_grid.py # Grid tool used to calibrate difference coordinates
+├── diff.py # Main game script containing gameplay logic
+└── diff.spec # PyInstaller specification file
+
+
+🔍 4.A Lessons Learned
+
+During the development of this project, I learned several key concepts:
+
+* Adding a coordinate grid tool – I created a coordinate grid overlay that helped me precisely determine the locations of differences in the images. This made player click validation much more accurate.
+
+* Learning Tkinter – I gained a better understanding of event loops, button handling, and working with the Canvas widget.
+
+* Threading – I used a separate thread to track game time and save results without blocking the user interface.
+
+* Debugging and exporting to .exe – After several attempts with PyInstaller, I successfully packaged the game into an executable file and resolved issues related to resources and file paths.
+
+
+🧩 4.B Improvements Implemented
+
+* While working on the project, I focused on improving the game's functionality and maintainability:
+
+* Improved game loop structure – Screen rendering and restart/exit queue handling now work correctly every frame. The list of discovered differences is generated dynamically ([False] * len(DIFFERENCES)), making it easy to add new differences or levels.
+
+* Game loop moved into a dedicated run_game() function – The main() function first displays the intro window and then starts the game. Previously, the game loop was executed immediately when importing the module.
+
+* Enhanced grid script and new overlay layer – Improved the coordinate calibration tool and added an additional overlay layer for better visualization and debugging.
+
+
+🧩 5. Future Development
+
+In my free time, I plan to:
+
+* Add more levels with new image pairs.
+* Implement a scoring system.
+* Extend the project with multiplayer functionality or timed challenges.
+* Improve the user interface by adding more colors and visual enhancements 🎉.
+
+
+💡 6. What Does This Project Demonstrate?
+
+This project is a great example of combining:
+
+* Tkinter – for application window management.
+* Pygame Zero / Pygame – for rendering and user interaction.
+* Image processing techniques – for identifying and marking differences.
+* GUI geometry debugging – through custom calibration tools.
+* Packaging Python applications into executable (.exe) files.
+* Creating supporting development tools (such as image grid overlays) that streamline the development process.
+
+
+Code snippet: 
+![code1](images/code1.png)
+
+
+Code snippet: 
+![code2](images/code2.png)
+
+<hr style="border:3px solid #AEC6CF;">
+
+
+
+
+### Contact:
+[![Kamila Dudzińska](https://img.shields.io/badge/Kamila%20Dudzińska-ff69b4?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![Email](https://img.shields.io/badge/Email-555555?style=for-the-badge)](mailto:kamila.dudzinska@onet.pl)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge)](https://www.linkedin.com/flagship-web/in/kamila-dudzi%C5%84ska-856bb31b8/)
+
+<br></br>
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # 🎮 Gra „Znajdź różnice”
 
 
