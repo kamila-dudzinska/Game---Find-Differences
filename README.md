@@ -90,7 +90,7 @@ Game/
 
 
 
-🔍 4.A Lessons learned
+🔍 4.A Lessons learned:
 Podczas tworzenia projektu nauczyłam się kilku kluczowych rzeczy:
 
 * Dodanie skryptu z gridem — stworzyłam siatkę współrzędnych, która pomogła mi precyzyjnie określić parametry różnic na obrazach. Dzięki temu kliknięcia gracza są dokładnie weryfikowane.
@@ -113,19 +113,19 @@ Podczas pracy nad projektem skupiłam się na poprawie funkcjonalności i dział
 
 
 
-🧩 5. Dalszy rozwój
+🧩 5. Dalszy rozwój:
 W wolnym czasie planuję:
 
-Dodać kolejne levele z nowymi parami zdjęć.
+* Dodać kolejne levele z nowymi parami zdjęć.
 
-Wprowadzić system punktacji i ranking graczy.
+* Wprowadzić system punktacji
 
-Rozszerzyć projekt o tryb multiplayer lub czasowe wyzwania.
+* Rozszerzyć projekt o tryb multiplayer lub czasowe wyzwania.
 
-Ulepszyć interfejs — np. animacje przy znalezieniu różnicy 🎉.
+* Ulepszyć interfejs - dodać więcej kolorów🎉.
 
 
-6. 💡 Co pokazuje ten projekt
+6. 💡 Co pokazuje ten projekt?
 Ten projekt jest świetnym przykładem połączenia:
 
 * Tkinter – do zarządzania oknami aplikacji
