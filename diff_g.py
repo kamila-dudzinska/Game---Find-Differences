@@ -96,6 +96,8 @@ def pokaz_zakonczenie(wynik_gracza):
         def play_again():
             zdarzenia.put('restart')
             window.destroy()
+            start_czas = pygame.time.get_ticks()
+            pudla = 0
 
         
         def exit_game():
@@ -135,7 +137,7 @@ def pokaz_zakonczenie(wynik_gracza):
 
         window.mainloop()
 
-    #
+    okno_konca.set()
     thread = threading.Thread(target=window_tk)
     thread.daemon = True
     thread.start()
@@ -189,9 +191,8 @@ def intro():
 
     # Play button
     def start_game():
-        okno_konca.set()
-        thread = threading.Thread(target=window_tk, daemon=True)
-        thread.start()
+        window.destroy()
+
 
     btn_start = tk.Button(
         window,
@@ -251,13 +252,19 @@ while running:
             if trafiony(region11, pos) or trafiony(region12, pos):
                 print("1 Element found!")
                 lista[0] = True
+                trafienie = True
             if trafiony(region21, pos) or trafiony(region22, pos):
                 print("2 Element found!")
                 lista[1] = True
+                trafienie = True
             if trafiony(region31, pos) or trafiony(region32, pos):
                 print("3 Element found!")
                 lista[2] = True
+                trafienie = True
 
+            if not trafienie:
+                pudla += 1
+                
             if all(lista):
                 print("You win!")
                 pokaz_zakonczenie(3)
@@ -279,11 +286,11 @@ while running:
 
     if not all(lista):
         czas = (pygame.time.get_ticks() - start_czas) // 1000
-        tekst = f"Found: {sum(lista)}/3   Time: {czas}s   Misses: {pudla}"
-        napis = font_hud.render(tekst, True, (255, 255, 255))
-        tlo = napis.get_rect(topleft=(10, 10)).inflate(12, 6)
-        pygame.draw.rect(screen, (0, 0, 0), tlo)
-        screen.blit(napis, (10, 10))
+    tekst = f"Found: {sum(lista)}/3   Time: {czas}s   Misses: {pudla}"
+    napis = font_hud.render(tekst, True, (255, 255, 255))
+    tlo = napis.get_rect(topleft=(10, 10)).inflate(12, 6)
+    pygame.draw.rect(screen, (0, 0, 0), tlo)
+    screen.blit(napis, (10, 10))
 
     pygame.display.flip()
     clock.tick(60)
