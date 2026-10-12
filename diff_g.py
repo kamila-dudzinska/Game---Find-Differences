@@ -96,8 +96,6 @@ def pokaz_zakonczenie(wynik_gracza):
         def play_again():
             zdarzenia.put('restart')
             window.destroy()
-            start_czas = pygame.time.get_ticks()
-            pudla = 0
 
         
         def exit_game():
@@ -240,6 +238,8 @@ while running:
         okno_konca.clear()
         if akcja == "restart":
             lista = [False, False, False]
+            start_czas = pygame.time.get_ticks()
+            pudla = 0
         elif akcja == "exit":
             running = False
 
