@@ -18,6 +18,7 @@ Tkinter - buil-in GUI toolkit. To create desktop app with windows, menu, buttons
 import os
 import sys
 import threading
+import queue
 import tkinter as tk
 import tkinter.font as tkfont
 
@@ -26,6 +27,7 @@ import pygame
 from pygame import Rect
 
 # background:
+# PyInstaller unpacks resources to when running from .exe
 katalog = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
 #the path to file was hidden due to safety reasons. 
 obrazek_path = os.path.join(katalog, 'images', 'dif.png')
@@ -34,6 +36,11 @@ background = pygame.image.load(obrazek_path)
 # size
 WIDTH = 940
 HEIGHT = 630
+
+# click tolerance around each difference, in pixels
+MARGINES = 10
+def trafiony(region, pos):
+    return region.inflate(2 * MARGINES, 2 * MARGINES).collidepoint(pos)
 
 # area of differences
 region11 = Rect((60, 250), (50,50))
@@ -45,16 +52,14 @@ region22 = Rect((520,400), (50,50))
 region31 = Rect((250,460), (60,50))
 region32 = Rect((680,460), (60,50))
 
-# cursor
-kursor = Rect((0,0), (15,15))
-
 # list of points
 lista = [False, False, False]
 
 # close game
-close_game = False
+zdarzenia = queue.Queue() 
+okno_konca = threading.Event()
 
-def pokaz_zakonczenie(wynik_gracza, restart_game):
+def pokaz_zakonczenie(wynik_gracza):
 
     def window_tk():
         window = tk.Tk()
@@ -62,7 +67,7 @@ def pokaz_zakonczenie(wynik_gracza, restart_game):
 
         wid = 450
         hh = 250
-        screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth()/2 - wid/2)}+{int(window.winfo_screenheight()/2 - wid/2)}"
+        screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth()/2 - wid/2)}+{int(window.winfo_screenheight()/2 - hh/2)}"
         window.geometry(screen_el)
         window.configure(bg="#2C3E50")
         font_header = tkfont.Font(family="Helvetica", size=22, weight="bold")
@@ -76,7 +81,7 @@ def pokaz_zakonczenie(wynik_gracza, restart_game):
                                 font=font_header)
         label_header.pack(pady=(20, 10))
 
-        text_result = f"Found 3/3 elements!"
+        text_result = f"Found {wynik_gracza}/3 elements!"
         label_result = tk.Label(window,
                                text=text_result,
                                fg="#ECF0F1",            #light grayish
@@ -87,20 +92,20 @@ def pokaz_zakonczenie(wynik_gracza, restart_game):
         frame = tk.Frame(window, bg="#2C3E50")          #dim dark grey
         frame.pack(pady=20)
 
+        
         def play_again():
+            zdarzenia.put('restart')
             window.destroy()
-            restart_game()
 
-        def restart_game():
-            global lista, kursor
-            lista = [False, False, False]
-            kursor = Rect((0,0), (15,15))
-
+        
         def exit_game():
-            global close_game
+            zdarzenia.put('exit')
             window.destroy()
-            close_game = True
+            
+        # closing with X works like Exit
+        window.protocol("WM_DELETE_WINDOW", exit_game)
 
+        
         btn_restart = tk.Button(
             frame,
             text="Play again",
@@ -184,7 +189,9 @@ def intro():
 
     # Play button
     def start_game():
-        window.destroy()
+        okno_konca.set()
+        thread = threading.Thread(target=window_tk, daemon=True)
+        thread.start()
 
     btn_start = tk.Button(
         window,
@@ -216,37 +223,45 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Find the differences")
 clock = pygame.time.Clock()
+pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_CROSSHAIR)
+font_hud = pygame.font.SysFont("Helvetica", 24, bold=True)
+start_czas = pygame.time.get_ticks()
+czas = 0
+pudla = 0
 
 running = True
 
 while running:
-    if close_game:
-        pygame.quit()
-        sys.exit()
+    while not zdarzenia.empty():
+        akcja = zdarzenia.get()
+        okno_konca.clear()
+        if akcja == "restart":
+            lista = [False, False, False]
+        elif akcja == "exit":
+            running = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
         # mouse click
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if kursor.colliderect(region11) or kursor.colliderect(region12):
+        if event.type == pygame.MOUSEBUTTONDOWN and not okno_konca.is_set():
+            pos = event.pos     # exact point where the player clicked
+            trafienie = False
+            if trafiony(region11, pos) or trafiony(region12, pos):
                 print("1 Element found!")
                 lista[0] = True
-            if kursor.colliderect(region21) or kursor.colliderect(region22):
+            if trafiony(region21, pos) or trafiony(region22, pos):
                 print("2 Element found!")
                 lista[1] = True
-            if kursor.colliderect(region31) or kursor.colliderect(region32):
+            if trafiony(region31, pos) or trafiony(region32, pos):
                 print("3 Element found!")
                 lista[2] = True
 
-            if lista == [True, True, True]:
+            if all(lista):
                 print("You win!")
-                pokaz_zakonczenie(3, lambda: None)
-
-    # update cursor position
-    mouse_pos = pygame.mouse.get_pos()
-    kursor.topleft = mouse_pos
+                pokaz_zakonczenie(3)
+                
 
     # draw background
     screen.blit(background, (0,0))
@@ -262,8 +277,13 @@ while running:
         pygame.draw.rect(screen, (255,0,0), region31, 3)
         pygame.draw.rect(screen, (255,0,0), region32, 3)
 
-    # draw cursor
-    pygame.draw.rect(screen, (255,255,255), kursor)
+    if not all(lista):
+        czas = (pygame.time.get_ticks() - start_czas) // 1000
+        tekst = f"Found: {sum(lista)}/3   Time: {czas}s   Misses: {pudla}"
+        napis = font_hud.render(tekst, True, (255, 255, 255))
+        tlo = napis.get_rect(topleft=(10, 10)).inflate(12, 6)
+        pygame.draw.rect(screen, (0, 0, 0), tlo)
+        screen.blit(napis, (10, 10))
 
     pygame.display.flip()
     clock.tick(60)
