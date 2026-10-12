@@ -70,9 +70,9 @@ def pokaz_zakonczenie(wynik_gracza):
         screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth()/2 - wid/2)}+{int(window.winfo_screenheight()/2 - hh/2)}"
         window.geometry(screen_el)
         window.configure(bg="#2C3E50")
-        font_header = tkfont.Font(family="Helvetica", size=22, weight="bold")
-        fontt = tkfont.Font(family="Helvetica", size=14)
-        font_button = tkfont.Font(family="Helvetica", size=14, weight="bold")
+        font_header = tkfont.Font(root=window, family="Helvetica", size=22, weight="bold")
+        fontt = tkfont.Font(root=window, family="Helvetica", size=14)
+        font_button = tkfont.Font(root=window, family="Helvetica", size=14, weight="bold")
 
         label_header = tk.Label(window,
                                 text="WOW! You win!",
@@ -191,7 +191,7 @@ def intro():
 
     # Play button
     def start_game():
-        window.destroy()
+        window.quit()
 
 
     btn_start = tk.Button(
@@ -212,7 +212,9 @@ def intro():
     btn_start.configure(height=8)  # zwiększa wysokość w jednostkach tekstowych
 
 
+    window.protocol("WM_DELETE_WINDOW", start_game)
     window.mainloop()
+    window.destroy()
  
 
 #NTRO WINDOW 
@@ -296,3 +298,4 @@ while running:
     clock.tick(60)
 
 pygame.quit()
+
