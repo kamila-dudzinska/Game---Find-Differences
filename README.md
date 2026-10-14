@@ -9,7 +9,7 @@ Language: Python
 Modules: os, sys, threading, tkinter, pygame, pillow
 
 
-## 🎮 Game Preview
+## 🎮 Game Preview - Extended 14.10.2026
 
 <p align="center">
   <img src="images/overview2.gif" width="600">
@@ -18,13 +18,7 @@ Modules: os, sys, threading, tkinter, pygame, pillow
 
 ⚙️ 1. How to Run?
 
-🔹 Option 1 — Executable (.exe) File
-Download the project folder.
-Run find_differences.exe.
-The game will open in a window. Click the differences in the images to score points.
-
-
-🔹 Option 2 — Python Source Code (IDE)
+🔹 Python Source Code (IDE)
 Open the project in your preferred IDE (e.g. VS Code, PyCharm).
 Make sure you have Python ≥ 3.10 installed, along with the required libraries.
 Run:
@@ -79,6 +73,14 @@ During the development of this project, I learned several key concepts:
 
 * Enhanced grid script and new overlay layer – Improved the coordinate calibration tool and added an additional overlay layer for better visualization and debugging.
 
+* Improved the grid script and added a new overlay layer.
+
+* Added a new level with multiple differences. Refactored the codebase to make adding new levels easier and more scalable.
+
+* Added rewards for completing a level.
+
+* Fixed the "Play" button.
+
 
 🧩 5. Future Development
 
@@ -86,7 +88,7 @@ In my free time, I plan to:
 
 * Add more levels with new image pairs.
 * Implement a scoring system.
-* Extend the project with multiplayer functionality or timed challenges.
+* Add rewards for every level comleting.
 * Improve the user interface by adding more colors and visual enhancements 🎉.
 
 
@@ -125,7 +127,7 @@ Code snippet:
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# 🎮 Gra „Znajdź różnice”
+# 🎮 Gra „Znajdź różnice” - Rozszerzenie 14.10.2026
 
 
 Projekt to prosta gra logiczna typu „znajdź różnice ”, w której gracz porównuje dwa niemal identyczne obrazy i wskazuje miejsca, w których obrazki różnią się od siebie.
@@ -147,19 +149,8 @@ Modules: os, sys, threading, tkinter, pygame, pillow
 
 ⚙️ 1. Jak uruchomić?
 
-🔹 Wersja 1 — plik .exe
- ** Pobierz folder projektu.
 
-** Uruchom plik find_differences.exe.
-
-** Gra otworzy się w oknie — klikaj różnice na obrazach, aby zdobywać punkty.
-
-
-
-
-
-
-🔹 Wersja 2 — kod w Python (IDE)
+🔹 Kod w Python (IDE)
 ** Otwórz projekt w ulubionym IDE (np. VS Code, PyCharm).
 
 ** Upewnij się, że masz zainstalowany Python ≥ 3.10 oraz bibliotekę Tkinter.
@@ -238,6 +229,12 @@ Podczas pracy nad projektem skupiłam się na poprawie funkcjonalności i dział
 
 * poprawa skryptu siatki i dodanie nowej warstwy overlay
 
+* dodany nowy level z wieloma różnicami - refaktortzacja kodu, w taki sposób, by dodawanie nowych leveli było łatwe
+
+* dodane nagrody za przejście levelu
+
+* poprawiony przycisk 'Play'
+
 
 
 🧩 5. Dalszy rozwój:
@@ -247,7 +244,7 @@ W wolnym czasie planuję:
 
 * Wprowadzić system punktacji
 
-* Rozszerzyć projekt o tryb multiplayer lub czasowe wyzwania.
+* Dodać nagrody za każdy level.
 
 * Ulepszyć interfejs - dodać więcej kolorów🎉.
 
