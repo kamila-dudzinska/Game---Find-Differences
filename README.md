@@ -12,7 +12,7 @@ Modules: os, sys, threading, tkinter, pygame, pillow
 ## 🎮 Game Preview
 
 <p align="center">
-  <img src="images/overview2_.gif" width="600">
+  <img src="images/overview2.gif" width="600">
 </p>
 
 
