@@ -233,6 +233,7 @@ __marimo__/
 !README.md
 !requirements.txt
 !images/
+!images/**
 !nazwa_pliku_dg1.py
 !nazwa_pliku_dg2.py
 
