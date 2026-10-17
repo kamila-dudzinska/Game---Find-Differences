@@ -63,11 +63,17 @@ def para(x, y):
  
 # levels: image + list of pairs (left area, right area)
 POZIOMY = [
-    {"obrazek": "dif.png", "icon": "sweet.png", "icon_name": "Sweet",
-     "regiony": [(region11, region12), 
+    {"obrazek": "dif.png", "icon": "happiness.png", "icon_name": "Happiness",
+     "description": ["Two Nigerian women in vivid yellow and green traditional dresses.",
+                     "They wear large golden earrings and long beaded necklaces.",
+                     "Their heads are wrapped in 'Gele', a festive headwrap for weddings."],
+     "regiony": [(region11, region12),
                  (region21, region22), 
                  (region31, region32)]},
-    {"obrazek": "china.jpg", "icon": "happiness.png", "icon_name": "Happiness",
+    {"obrazek": "china.jpg", "icon": "wow.png", "icon_name": "Wow",
+     "description": ["Two Chinese women in red and teal Hanfu robes embroidered with gold.",
+                     "Their hair is styled in high buns with golden pins and jade ornaments.",
+                     "Behind them you can see a traditional pavilion and a stone garden."],
      "regiony": [para(197, 220),    # ornament on the forehead
                  para(152, 252),    # mole on the cheek
                  para(380, 144),    # golden hairpin
@@ -76,6 +82,12 @@ POZIOMY = [
                  para(419, 450),    # sign on the sleeve
                  para(279, 506),    # sign on the skirt
                  para(73, 538)]},   # embroidered circle in the corner
+    # level 3 - picture not chosen yet; remove the # signs when it's ready
+    # {"obrazek": "level3.png", "icon": "....png", "icon_name": "...",
+    #  "description": ["First sentence.",
+    #                  "Second sentence.",
+    #                  "Third sentence."],
+    #  "regiony": [para(100, 100)]},     # one para(x, y) for each difference
 ]
  
 # the path to file was hidden due to safety reasons.
@@ -93,16 +105,18 @@ lista = [False] * len(regiony)
 zdarzenia = queue.Queue() 
 new_window = threading.Event()
 
-def show_ending(gamer_result, num_differences, is_next, icon, icon_name):
+def show_ending(gamer_result, num_differences, is_next, icon, icon_name, extra_icons):
 
     def window_tk():
         window = tk.Tk()
         window.title("Game over!")
 
-        wid = 450
-        hh = 250
+        # the same size as the game window (WIDTH x HEIGHT), can't be resized
+        wid = WIDTH
+        hh = HEIGHT
         screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth()/2 - wid/2)}+{int(window.winfo_screenheight()/2 - hh/2)}"
         window.geometry(screen_el)
+        window.resizable(False, False)
         window.configure(bg="#2C3E50")
         font_header = tkfont.Font(root=window, family="Helvetica", size=22, weight="bold")
         fontt = tkfont.Font(root=window, family="Helvetica", size=14)
@@ -113,7 +127,7 @@ def show_ending(gamer_result, num_differences, is_next, icon, icon_name):
                                 fg="#1ABC9C",           #dim light green
                                 bg="#2C3E50",           #dim dark grey
                                 font=font_header)
-        label_header.pack(pady=(20, 10))
+        label_header.pack(pady=(120, 10))      # 120 - content in the middle of the big window
 
         text_result = f"Found {gamer_result}/{num_differences} elements!"
         label_result = tk.Label(window,
@@ -123,17 +137,22 @@ def show_ending(gamer_result, num_differences, is_next, icon, icon_name):
                                font=fontt)
         label_result.pack(pady=10)
 
-        # reward icon won on this level (627 px PNG, subsample(4) makes it ~157 px)
-        # master=window - the image must belong to this window's Tk (this runs in a separate thread)
-        icon_img = tk.PhotoImage(master=window, file=os.path.join(katalog, 'images', icon)).subsample(4)
-        label_icon = tk.Label(window, 
-                              image=icon_img, 
-                              bg="#2C3E50")
-        label_icon.image = icon_img                     # keep a reference, otherwise the image disappears
-        label_icon.pack()
+        # reward icons won on this level, side by side (main icon + extra icons)
+        frame_icons = tk.Frame(window, bg="#2C3E50")    #dim dark grey
+        frame_icons.pack()
+        for file in [icon] + [f for f, n in extra_icons]:
+            # master=window - the image must belong to this window's Tk (this runs in a separate thread)
+            icon_img = tk.PhotoImage(master=window, file=os.path.join(katalog, 'images', 'rewards', file))
+            icon_img = icon_img.subsample(max(1, round(icon_img.width() / 157)))   # ~157 px wide
+            label_icon = tk.Label(frame_icons,
+                                  image=icon_img,
+                                  bg="#2C3E50")
+            label_icon.image = icon_img                 # keep a reference, otherwise the image disappears
+            label_icon.pack(side=tk.LEFT, padx=10)
 
+        names = ", ".join([icon_name] + [n for f, n in extra_icons])
         label_reward = tk.Label(window,
-                                text=f"Your reward: {icon_name}",
+                                text=f"Your reward: {names}",
                                 fg="#1ABC9C",           #dim light green
                                 bg="#2C3E50",           #dim dark grey
                                 font=fontt)
@@ -183,12 +202,6 @@ def show_ending(gamer_result, num_differences, is_next, icon, icon_name):
         )
         btn_wyjscie.pack(side=tk.LEFT, padx=10)
 
-        # window height adjusted to the content (icon, Windows display scaling)
-        window.update_idletasks()
-        hh = window.winfo_reqheight()
-        screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth()/2 - wid/2)}+{int(window.winfo_screenheight()/2 - hh/2)}"
-        window.geometry(screen_el)
-
         window.mainloop()
 
     new_window.set()
@@ -201,10 +214,12 @@ def intro():
     window = tk.Tk()
     window.title("Find the differences – intro")
 
-    wid = 520
-    hh = 360
+    # the same size as the game window (WIDTH x HEIGHT), can't be resized
+    wid = WIDTH
+    hh = HEIGHT
     screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth() / 2 - wid / 2)}+{int(window.winfo_screenheight() / 2 - hh / 2)}"
     window.geometry(screen_el)
+    window.resizable(False, False)
     window.configure(bg="#2C3E50")
 
     font_header = tkfont.Font(root=window, family="Helvetica", size=18, weight="bold")
@@ -219,7 +234,7 @@ def intro():
         bg="#2C3E50",
         font=font_header
     )
-    label_header.pack(pady=(20, 10))
+    label_header.pack(pady=(170, 10))      # 170 - content in the middle of the big window
 
     # Description (tekst wewnątrz okna, nie w tytule)
     description = (
@@ -227,11 +242,7 @@ def intro():
         "- Look carefully at both images\n"
         "- Find all possible differences in the picture\n"
         "- Click on the spots where the images differ - right picture\n\n"
-        "Image description:\n"
-        "Two Nigerian women in vivid yellow and green traditional dresses, "
-        "with large golden earrings and long beaded necklaces.\n"
-        "Their heads are wrapped in 'Gele' - a festive, sculpted headwrap "
-        "worn for weddings and celebrations."
+        "Before each level you will see a short description of the picture."
     )
 
     label_desc = tk.Label(
@@ -271,23 +282,20 @@ def intro():
     btn_start.bind("<Button-1>", lambda event: start_game())
     btn_start.pack(pady=(10, 20))
 
-
-    # window height adjusted to the content (Window scaling)
-    window.update_idletasks()
-    hh = window.winfo_reqheight()
-    screen_el = f"{wid}x{hh}+{int(window.winfo_screenwidth() / 2 - wid / 2)}+{int(window.winfo_screenheight() / 2 - hh / 2)}"
-    window.geometry(screen_el)
-
     window.protocol("WM_DELETE_WINDOW", start_game)
     window.mainloop()
+    # where the inside of the intro window was - the game window will open in the same place
+    position = f"{window.winfo_rootx()},{window.winfo_rooty()}"
     window.destroy()
- 
+    return position
+
 
 #NTRO WINDOW 
-intro()    
+position = intro()
 
 
 # MAIN GAME LOOP — PURE PYGAME
+os.environ['SDL_VIDEO_WINDOW_POS'] = position     # game window exactly where the intro was
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Find the differences")
@@ -296,9 +304,12 @@ pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_CROSSHAIR)
 font_hud = pygame.font.SysFont("Helvetica", 
                                24, 
                                bold=True)
+font_desc = pygame.font.SysFont("Helvetica", 24)
 time_start = pygame.time.get_ticks()
 time = 0
 miss = 0
+miss_all = 0                # misses in all levels together (for the 'Like a boss' icon)
+show_description = True     # picture description before each level, closed by a click
 
 running = True
 
@@ -310,18 +321,27 @@ while running:
             poziom += 1
         elif action == "restart":
             poziom = 0
+            miss_all = 0
         if action in ("next", "restart"):
             regiony = POZIOMY[poziom]["regiony"]
             background = backgrounds[poziom]
             lista = [False] * len(regiony)
             time_start = pygame.time.get_ticks()
+            time = 0
             miss = 0
+            show_description = True
         if action == "exit":
             running = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        # click on the description starts the level (it is not a miss)
+        if event.type == pygame.MOUSEBUTTONDOWN and show_description:
+            show_description = False
+            time_start = pygame.time.get_ticks()     # time counts from now
+            continue
 
         # mouse click
         if event.type == pygame.MOUSEBUTTONDOWN and not new_window.is_set():
@@ -335,11 +355,16 @@ while running:
 
             if not strike:
                 miss += 1
+                miss_all += 1
                 
             if all(lista):
                 print("You win!")
+                # extra icon for no misses in all levels (file, name)
+                extra_icons = []
+                if poziom + 1 == len(POZIOMY) and miss_all == 0:
+                    extra_icons.append(("like_a_boss.png", "Like a boss"))
                 show_ending(sum(lista), len(lista), poziom + 1 < len(POZIOMY),
-                            POZIOMY[poziom]["icon"], POZIOMY[poziom]["icon_name"])
+                            POZIOMY[poziom]["icon"], POZIOMY[poziom]["icon_name"], extra_icons)
                 
 
     # draw background
@@ -351,13 +376,23 @@ while running:
             pygame.draw.rect(screen, (255,0,0), left, 3)
             pygame.draw.rect(screen, (255,0,0), right, 3)
 
-    if not all(lista):
+    if not all(lista) and not show_description:
         time = (pygame.time.get_ticks() - time_start) // 1000
     text = f"Level {poziom + 1}   Found: {sum(lista)}/{len(lista)}   Time: {time}s   Misses: {miss}"
     sign = font_hud.render(text, True, (255, 255, 255))
     tlo = sign.get_rect(topleft=(10, 10)).inflate(12, 6)
     pygame.draw.rect(screen, (0, 0, 0), tlo)
     screen.blit(sign, (10, 10))
+
+    # picture description before the level, on a dark cover
+    if show_description:
+        cover = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+        cover.fill((44, 62, 80, 235))               #dim dark grey, like the Tk windows
+        screen.blit(cover, (0, 0))
+        lines = [f"Level {poziom + 1}", ""] + POZIOMY[poziom]["description"] + ["", "Click to start"]
+        for n, line in enumerate(lines):
+            line_sign = font_desc.render(line, True, (236, 240, 241))     #light grayish
+            screen.blit(line_sign, line_sign.get_rect(center=(WIDTH // 2, 190 + n * 40)))
 
     pygame.display.flip()
     clock.tick(60)
